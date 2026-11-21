@@ -3,8 +3,9 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
 const Ren=require('../src/ren.js');let n=0;
 function test(name,fn){fn();n++;console.log('PASS '+name);}
 function validSVG(svg){
- assert(svg.startsWith('<svg '));assert(svg.endsWith('</svg>'));assert(!/NaN|Infinity|undefined/.test(svg));
- assert(!/<image\b|data:image|<script\b|<foreignObject\b|https?:\/\/(?!www.w3.org)/.test(svg));
+ assert(svg.startsWith('<svg '));assert(svg.endsWith('</svg>'));assert(!/NaN|Infinity|undefined/.test(svg.replace(/data:image\/png;base64,[A-Za-z0-9+/=]+/g,'')));
+ assert(!/<script\b|<foreignObject\b|https?:\/\/(?!www.w3.org)/.test(svg));
+ for(const m of svg.matchAll(/<image\b([^>]*)\/>/g)) assert(/href="data:image\/png;base64,[A-Za-z0-9+/=]+"/.test(m[1]),'Unexpected external image');
  const ids=[...svg.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);assert.equal(new Set(ids).size,ids.length,'duplicate SVG id');
  const refs=[...svg.matchAll(/url\(#([^)]*)\)/g)].map(m=>m[1]);refs.forEach(x=>assert(ids.includes(x),'missing reference '+x));
 }
@@ -20,6 +21,14 @@ test('same parameters return byte-identical SVG',()=>{const o={emotion:'concerne
 test('frame order does not affect output',()=>{const s=JSON.parse(fs.readFileSync(path.join(__dirname,'../examples/presentation.json'),'utf8'));const a=Ren.frame(s,72);Ren.frame(s,222);Ren.frame(s,1);assert.equal(a,Ren.frame(s,72));});
 test('static mode is genuinely static',()=>assert.equal(Ren.render({motion:0,blink:false,time:0}),Ren.render({motion:0,blink:false,time:99})));
 test('changing mouth does not change rig or eyes',()=>{const a=Ren.render({mouth:'AA',motion:0,blink:false});const b=Ren.render({mouth:'OO',motion:0,blink:false});const before=x=>x.split('<g id="ren-mouth"')[0];assert.equal(before(a),before(b));});
+test('whole hand sprites and connected sleeves have expected per-pose counts',()=>{
+ const expected={idle:0,present:1,explain:2,point:1,'point-up':1,'hand-on-chest':0,emphasis:0,wave:1};
+ for(const [pose,count] of Object.entries(expected)){
+  const svg=Ren.render({pose,blink:false,motion:0});
+  assert.equal((svg.match(/data-ren-unified-hand=/g)||[]).length,count,pose);
+  assert.equal((svg.match(/data-ren-connected-elbow=/g)||[]).length,2,pose);
+ }
+});
 test('source never loads images or consults wall clock',()=>{const code=fs.readFileSync(path.join(__dirname,'../src/ren.js'),'utf8').replace(/\/\*[\s\S]*?\*\//g,'').replace(/\/\/[^\n]*/g,'');assert(!/Math\.random\(|Date\.now\(|fetch\(|new Image\(/.test(code));});
 for(const x of [{emotion:'joyful'},{mouth:'UNKNOWN'},{pose:'run'},{time:-1},{time:NaN},{width:0},{blink:'yes'},{gaze:[2,0]},{gaze:[0]},{id:'bad"/><script>'},{background:'url(evil)'},{arbitrary:1}])test('reject bad options '+JSON.stringify(x),()=>assert.throws(()=>Ren.render(x),/Ren:/));
 for(const file of fs.readdirSync(path.join(__dirname,'../examples')).filter(x=>x.endsWith('.json'))){test('example '+file,()=>{const s=JSON.parse(fs.readFileSync(path.join(__dirname,'../examples',file),'utf8'));assert(Ren.validateScene(s));validSVG(Ren.frame(s,0));validSVG(Ren.frame(s,Math.ceil(s.duration*s.fps)-1));assert.throws(()=>Ren.frame(s,Math.ceil(s.duration*s.fps)),/outside/);});}
