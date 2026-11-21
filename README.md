@@ -4,6 +4,8 @@
 
 ![Market with Ren — origami market briefing banner](assets/market-with-ren-readme-clean.jpg)
 
+**Live website & interactive preview:** [market-with-ren.vercel.app](https://market-with-ren.vercel.app/) — explore the skill, installation steps, and Ren's visual demo (no audio in the website preview).
+
 Market with Ren is an agent skill for producing **60-second, vertical stock-market videos** in a consistent folded-paper visual style. Ren, a reusable animated origami news anchor, presents India-first coverage: **Nifty 50, Sensex, sectors, stocks, institutional flows, macro signals, and the next trading session's calendar**.
 
 The repository contains the production instructions, episode templates, research and quality-control guidance, animation assets, and helper scripts. It is a **skill and production toolkit**, not a one-click video-generation website or a source of live market data.
