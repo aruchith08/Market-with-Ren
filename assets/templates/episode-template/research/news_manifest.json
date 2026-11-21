@@ -1,0 +1,4 @@
+{
+  "superseded_by": "research/market_manifest.json",
+  "note": "This episode format is stock-market only. Use market_manifest.json; the beat schema now carries instrument, value, signed change, as_of timestamp and source per beat."
+}

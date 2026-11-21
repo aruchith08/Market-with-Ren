@@ -1,0 +1,14 @@
+{
+  "name":"ren-character-engine",
+  "version":"1.0.0",
+  "private":true,
+  "description":"Deterministic origami Ren character geometry, acting and speech controls. No raster assets or runtime dependencies.",
+  "license":"MIT",
+  "main":"src/ren.js",
+  "scripts":{
+    "test":"node tests/test.js",
+    "export":"node scripts/export-assets.js",
+    "sheets":"node scripts/sheets.js",
+    "studio":"node scripts/build-studio.js"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "version":1,"fps":30,"duration":5,"transition":0.35,
+  "character":{"emotion":"serious","pose":"idle","motion":0.35,"background":"transparent"},
+  "acting":[{"at":0,"emotion":"serious"},{"at":1.5,"emotion":"concerned","gaze":[-0.3,0]},{"at":3.5,"emotion":"focused","gaze":[0,0]}],
+  "speech":[],
+  "metadata":{"purpose":"Respectful silent listening. Do not use comic excitement for tragedy."}
+}

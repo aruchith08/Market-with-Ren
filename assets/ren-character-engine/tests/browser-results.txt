@@ -1,0 +1,6 @@
+PASS: standalone HTML content renders in Chromium with no network requests.
+PASS: selectors change expressions, mouth and gestures.
+PASS: timeline demonstration renders.
+PASS: invalid scene JSON produces a visible error.
+PASS: no JavaScript page errors.
+NOTE: this sandbox blocks file:// navigation by administrative policy. HTML was tested using Playwright set_content without changing that policy.

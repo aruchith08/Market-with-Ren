@@ -1,0 +1,19 @@
+{
+  "episode_title": "",
+  "date": "",
+  "mode": "post-close",
+  "market": "NSE / BSE, India",
+  "timezone": "Asia/Kolkata",
+  "aspect_ratio": "9:16",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "duration_seconds": 60,
+  "intro_seconds": 4,
+  "beat_block_seconds": 51,
+  "outro_seconds": 5,
+  "voice": "male English, one voice per episode",
+  "transition_sfx": false,
+  "disclaimer": "This video is for information only and is not investment advice. Market data as of <time> IST on <date>. Please consult a SEBI-registered adviser before investing.",
+  "beats": []
+}

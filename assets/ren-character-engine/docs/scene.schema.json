@@ -1,0 +1,338 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Ren scene v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "fps",
+    "duration"
+  ],
+  "description": "Use scripts/validate.js as the runtime authority; it additionally checks chronological cue order, overlaps and duration bounds.",
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "fps": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 120
+    },
+    "duration": {
+      "type": "number",
+      "minimum": 0.04,
+      "maximum": 3600
+    },
+    "transition": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "character": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "emotion": {
+          "type": "string",
+          "enum": [
+            "neutral",
+            "serious",
+            "focused",
+            "determined",
+            "concerned",
+            "sad",
+            "surprised",
+            "alert",
+            "confident",
+            "smiling",
+            "happy",
+            "explaining",
+            "thinking",
+            "skeptical",
+            "curious",
+            "relieved",
+            "excited",
+            "disappointed",
+            "angry",
+            "confused"
+          ]
+        },
+        "pose": {
+          "type": "string",
+          "enum": [
+            "idle",
+            "present",
+            "explain",
+            "point",
+            "point-up",
+            "hand-on-chest",
+            "emphasis",
+            "wave"
+          ]
+        },
+        "mouth": {
+          "type": "string",
+          "enum": [
+            "auto",
+            "rest",
+            "MBP",
+            "small",
+            "medium",
+            "AA",
+            "EE",
+            "OH",
+            "OO",
+            "FV",
+            "L",
+            "TH",
+            "CH",
+            "smile",
+            "teeth"
+          ]
+        },
+        "eyes": {
+          "type": "string",
+          "enum": [
+            "auto",
+            "open",
+            "half",
+            "closed",
+            "wide",
+            "narrow",
+            "happy",
+            "wink-left",
+            "wink-right"
+          ]
+        },
+        "gaze": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "minimum": -1,
+            "maximum": 1
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "view": {
+          "type": "string",
+          "enum": [
+            "front",
+            "three-quarter",
+            "side",
+            "three-quarter-back",
+            "back"
+          ]
+        },
+        "facing": {
+          "type": "string",
+          "enum": [
+            "left",
+            "right"
+          ]
+        },
+        "blink": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          ]
+        },
+        "motion": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "time": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 86400
+        },
+        "seed": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 2147483647
+        },
+        "width": {
+          "type": "number",
+          "minimum": 32,
+          "maximum": 8192
+        },
+        "height": {
+          "type": "number",
+          "minimum": 32,
+          "maximum": 8192
+        },
+        "background": {
+          "type": "string",
+          "pattern": "^(transparent|#[0-9a-fA-F]{6})$"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,48}$"
+        },
+        "detail": {
+          "type": "string",
+          "enum": [
+            "full",
+            "draft"
+          ]
+        },
+        "headTilt": {
+          "type": "number",
+          "minimum": -12,
+          "maximum": 12
+        }
+      }
+    },
+    "acting": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "at"
+        ],
+        "properties": {
+          "at": {
+            "type": "number",
+            "minimum": 0
+          },
+          "emotion": {
+            "type": "string",
+            "enum": [
+              "neutral",
+              "serious",
+              "focused",
+              "determined",
+              "concerned",
+              "sad",
+              "surprised",
+              "alert",
+              "confident",
+              "smiling",
+              "happy",
+              "explaining",
+              "thinking",
+              "skeptical",
+              "curious",
+              "relieved",
+              "excited",
+              "disappointed",
+              "angry",
+              "confused"
+            ]
+          },
+          "pose": {
+            "type": "string",
+            "enum": [
+              "idle",
+              "present",
+              "explain",
+              "point",
+              "point-up",
+              "hand-on-chest",
+              "emphasis",
+              "wave"
+            ]
+          },
+          "view": {
+            "type": "string",
+            "enum": [
+              "front",
+              "three-quarter",
+              "side",
+              "three-quarter-back",
+              "back"
+            ]
+          },
+          "facing": {
+            "type": "string",
+            "enum": [
+              "left",
+              "right"
+            ]
+          },
+          "gaze": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "minimum": -1,
+              "maximum": 1
+            },
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "eyes": {
+            "type": "string",
+            "enum": [
+              "auto",
+              "open",
+              "half",
+              "closed",
+              "wide",
+              "narrow",
+              "happy",
+              "wink-left",
+              "wink-right"
+            ]
+          },
+          "headTilt": {
+            "type": "number",
+            "minimum": -12,
+            "maximum": 12
+          }
+        }
+      }
+    },
+    "speech": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "start",
+          "end",
+          "mouth"
+        ],
+        "properties": {
+          "start": {
+            "type": "number",
+            "minimum": 0
+          },
+          "end": {
+            "type": "number",
+            "minimum": 0
+          },
+          "mouth": {
+            "type": "string",
+            "enum": [
+              "rest",
+              "MBP",
+              "small",
+              "medium",
+              "AA",
+              "EE",
+              "OH",
+              "OO",
+              "FV",
+              "L",
+              "TH",
+              "CH",
+              "smile",
+              "teeth"
+            ]
+          }
+        }
+      }
+    },
+    "metadata": {
+      "type": "object"
+    }
+  }
+}

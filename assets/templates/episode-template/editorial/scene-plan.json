@@ -1,0 +1,37 @@
+{
+  "fps": 30,
+  "duration": 60,
+  "masthead": {
+    "text": "MARKET WITH REN",
+    "session_label": "CLOSE"
+  },
+  "ren": {
+    "x": 600,
+    "bottom_y": 1800,
+    "width": 480,
+    "height": 504,
+    "anchor": "bottom-centre"
+  },
+  "desk": {
+    "asset": "assets/props/news-desk/red-news-desk.svg",
+    "width_pct": 50,
+    "rim_from_ren_px": 110,
+    "x_px": null,
+    "y_px": null,
+    "allow_bleed": true,
+    "layer": "front-of-ren",
+    "opacity": 1.0
+  },
+  "intro": {
+    "start": 0,
+    "end": 4,
+    "visual": "Masthead reveal and the greeting line — Market with Ren, and these are today's stories — all inside 4s",
+    "speech": "This is Market with Ren — and these are today's stories."
+  },
+  "beats": [],
+  "outro": {
+    "start": 55,
+    "end": 60,
+    "visual": "Closing card, Ren sign-off behind the news desk"
+  }
+}

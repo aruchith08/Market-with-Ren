@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "fps": 30,
+  "duration": 10,
+  "transition": 0.32,
+  "character": {"emotion":"neutral","pose":"idle","view":"front","background":"#f3e8d6","seed":7,"motion":0.7},
+  "acting": [
+    {"at":0,"emotion":"neutral","pose":"idle"},
+    {"at":1.2,"emotion":"explaining","pose":"present","gaze":[-0.4,0]},
+    {"at":3.4,"emotion":"concerned","pose":"hand-on-chest","gaze":[0,0]},
+    {"at":5.2,"emotion":"alert","pose":"point-up","gaze":[-0.3,-0.3]},
+    {"at":7.2,"emotion":"confident","pose":"explain","gaze":[0,0]},
+    {"at":8.8,"emotion":"smiling","pose":"idle"}
+  ],
+  "speech": [
+    {"start":1.5,"end":1.65,"mouth":"MBP"},
+    {"start":1.65,"end":1.83,"mouth":"AA"},
+    {"start":1.83,"end":2.01,"mouth":"L"},
+    {"start":2.01,"end":2.22,"mouth":"OH"},
+    {"start":2.22,"end":2.40,"mouth":"FV"},
+    {"start":2.40,"end":2.60,"mouth":"EE"},
+    {"start":2.60,"end":2.80,"mouth":"OO"},
+    {"start":2.80,"end":3.04,"mouth":"AA"},
+    {"start":3.8,"end":4.0,"mouth":"small"},
+    {"start":4.0,"end":4.2,"mouth":"OH"},
+    {"start":4.2,"end":4.4,"mouth":"TH"},
+    {"start":4.4,"end":4.62,"mouth":"EE"},
+    {"start":5.6,"end":5.8,"mouth":"AA"},
+    {"start":5.8,"end":6.0,"mouth":"CH"},
+    {"start":6.0,"end":6.2,"mouth":"OO"},
+    {"start":6.2,"end":6.4,"mouth":"medium"},
+    {"start":7.55,"end":7.75,"mouth":"MBP"},
+    {"start":7.75,"end":7.96,"mouth":"AA"},
+    {"start":7.96,"end":8.15,"mouth":"L"},
+    {"start":8.15,"end":8.45,"mouth":"EE"}
+  ],
+  "metadata": {"purpose":"Silent acting and mouth-shape demonstration. Speech timings are illustrative, not aligned to recorded words."}
+}

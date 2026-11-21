@@ -1,0 +1,679 @@
+{
+  "version": 1,
+  "engine": "1.0.0",
+  "format": "procedural-svg",
+  "canonicalViewBox": [
+    0,
+    0,
+    1000,
+    1050
+  ],
+  "background": "transparent",
+  "notes": "All files are generated from src/ren.js. Not raster sprites. Do not edit exports; edit preset selections.",
+  "anchors": {
+    "headPivot": [
+      500,
+      550
+    ],
+    "mouth": [
+      500,
+      493
+    ],
+    "leftEye": [
+      443,
+      403
+    ],
+    "rightEye": [
+      557,
+      403
+    ],
+    "leftShoulder": [
+      315,
+      639
+    ],
+    "rightShoulder": [
+      685,
+      639
+    ]
+  },
+  "groups": {
+    "emotions": [
+      {
+        "name": "neutral",
+        "file": "emotions/neutral.svg",
+        "options": {
+          "emotion": "neutral"
+        }
+      },
+      {
+        "name": "serious",
+        "file": "emotions/serious.svg",
+        "options": {
+          "emotion": "serious"
+        }
+      },
+      {
+        "name": "focused",
+        "file": "emotions/focused.svg",
+        "options": {
+          "emotion": "focused"
+        }
+      },
+      {
+        "name": "determined",
+        "file": "emotions/determined.svg",
+        "options": {
+          "emotion": "determined"
+        }
+      },
+      {
+        "name": "concerned",
+        "file": "emotions/concerned.svg",
+        "options": {
+          "emotion": "concerned"
+        }
+      },
+      {
+        "name": "sad",
+        "file": "emotions/sad.svg",
+        "options": {
+          "emotion": "sad"
+        }
+      },
+      {
+        "name": "surprised",
+        "file": "emotions/surprised.svg",
+        "options": {
+          "emotion": "surprised"
+        }
+      },
+      {
+        "name": "alert",
+        "file": "emotions/alert.svg",
+        "options": {
+          "emotion": "alert"
+        }
+      },
+      {
+        "name": "confident",
+        "file": "emotions/confident.svg",
+        "options": {
+          "emotion": "confident"
+        }
+      },
+      {
+        "name": "smiling",
+        "file": "emotions/smiling.svg",
+        "options": {
+          "emotion": "smiling"
+        }
+      },
+      {
+        "name": "happy",
+        "file": "emotions/happy.svg",
+        "options": {
+          "emotion": "happy"
+        }
+      },
+      {
+        "name": "explaining",
+        "file": "emotions/explaining.svg",
+        "options": {
+          "emotion": "explaining"
+        }
+      },
+      {
+        "name": "thinking",
+        "file": "emotions/thinking.svg",
+        "options": {
+          "emotion": "thinking"
+        }
+      },
+      {
+        "name": "skeptical",
+        "file": "emotions/skeptical.svg",
+        "options": {
+          "emotion": "skeptical"
+        }
+      },
+      {
+        "name": "curious",
+        "file": "emotions/curious.svg",
+        "options": {
+          "emotion": "curious"
+        }
+      },
+      {
+        "name": "relieved",
+        "file": "emotions/relieved.svg",
+        "options": {
+          "emotion": "relieved"
+        }
+      },
+      {
+        "name": "excited",
+        "file": "emotions/excited.svg",
+        "options": {
+          "emotion": "excited"
+        }
+      },
+      {
+        "name": "disappointed",
+        "file": "emotions/disappointed.svg",
+        "options": {
+          "emotion": "disappointed"
+        }
+      },
+      {
+        "name": "angry",
+        "file": "emotions/angry.svg",
+        "options": {
+          "emotion": "angry"
+        }
+      },
+      {
+        "name": "confused",
+        "file": "emotions/confused.svg",
+        "options": {
+          "emotion": "confused"
+        }
+      }
+    ],
+    "poses": [
+      {
+        "name": "idle",
+        "file": "poses/idle.svg",
+        "options": {
+          "pose": "idle"
+        }
+      },
+      {
+        "name": "present",
+        "file": "poses/present.svg",
+        "options": {
+          "pose": "present"
+        }
+      },
+      {
+        "name": "explain",
+        "file": "poses/explain.svg",
+        "options": {
+          "pose": "explain"
+        }
+      },
+      {
+        "name": "point",
+        "file": "poses/point.svg",
+        "options": {
+          "pose": "point"
+        }
+      },
+      {
+        "name": "point-up",
+        "file": "poses/point-up.svg",
+        "options": {
+          "pose": "point-up"
+        }
+      },
+      {
+        "name": "hand-on-chest",
+        "file": "poses/hand-on-chest.svg",
+        "options": {
+          "pose": "hand-on-chest"
+        }
+      },
+      {
+        "name": "emphasis",
+        "file": "poses/emphasis.svg",
+        "options": {
+          "pose": "emphasis"
+        }
+      },
+      {
+        "name": "wave",
+        "file": "poses/wave.svg",
+        "options": {
+          "pose": "wave"
+        }
+      }
+    ],
+    "views": [
+      {
+        "name": "front-left",
+        "file": "views/front-left.svg",
+        "options": {
+          "view": "front",
+          "facing": "left"
+        }
+      },
+      {
+        "name": "three-quarter-left",
+        "file": "views/three-quarter-left.svg",
+        "options": {
+          "view": "three-quarter",
+          "facing": "left"
+        }
+      },
+      {
+        "name": "three-quarter-right",
+        "file": "views/three-quarter-right.svg",
+        "options": {
+          "view": "three-quarter",
+          "facing": "right"
+        }
+      },
+      {
+        "name": "side-left",
+        "file": "views/side-left.svg",
+        "options": {
+          "view": "side",
+          "facing": "left"
+        }
+      },
+      {
+        "name": "side-right",
+        "file": "views/side-right.svg",
+        "options": {
+          "view": "side",
+          "facing": "right"
+        }
+      },
+      {
+        "name": "three-quarter-back-left",
+        "file": "views/three-quarter-back-left.svg",
+        "options": {
+          "view": "three-quarter-back",
+          "facing": "left"
+        }
+      },
+      {
+        "name": "three-quarter-back-right",
+        "file": "views/three-quarter-back-right.svg",
+        "options": {
+          "view": "three-quarter-back",
+          "facing": "right"
+        }
+      },
+      {
+        "name": "back-left",
+        "file": "views/back-left.svg",
+        "options": {
+          "view": "back",
+          "facing": "left"
+        }
+      }
+    ],
+    "mouths": [
+      {
+        "name": "rest",
+        "file": "mouths/rest.svg",
+        "options": {
+          "mouth": "rest"
+        }
+      },
+      {
+        "name": "MBP",
+        "file": "mouths/MBP.svg",
+        "options": {
+          "mouth": "MBP"
+        }
+      },
+      {
+        "name": "small",
+        "file": "mouths/small.svg",
+        "options": {
+          "mouth": "small"
+        }
+      },
+      {
+        "name": "medium",
+        "file": "mouths/medium.svg",
+        "options": {
+          "mouth": "medium"
+        }
+      },
+      {
+        "name": "AA",
+        "file": "mouths/AA.svg",
+        "options": {
+          "mouth": "AA"
+        }
+      },
+      {
+        "name": "EE",
+        "file": "mouths/EE.svg",
+        "options": {
+          "mouth": "EE"
+        }
+      },
+      {
+        "name": "OH",
+        "file": "mouths/OH.svg",
+        "options": {
+          "mouth": "OH"
+        }
+      },
+      {
+        "name": "OO",
+        "file": "mouths/OO.svg",
+        "options": {
+          "mouth": "OO"
+        }
+      },
+      {
+        "name": "FV",
+        "file": "mouths/FV.svg",
+        "options": {
+          "mouth": "FV"
+        }
+      },
+      {
+        "name": "L",
+        "file": "mouths/L.svg",
+        "options": {
+          "mouth": "L"
+        }
+      },
+      {
+        "name": "TH",
+        "file": "mouths/TH.svg",
+        "options": {
+          "mouth": "TH"
+        }
+      },
+      {
+        "name": "CH",
+        "file": "mouths/CH.svg",
+        "options": {
+          "mouth": "CH"
+        }
+      },
+      {
+        "name": "smile",
+        "file": "mouths/smile.svg",
+        "options": {
+          "mouth": "smile"
+        }
+      },
+      {
+        "name": "teeth",
+        "file": "mouths/teeth.svg",
+        "options": {
+          "mouth": "teeth"
+        }
+      }
+    ],
+    "speech-faces": [
+      {
+        "name": "rest",
+        "file": "speech-faces/rest.svg",
+        "options": {
+          "mouth": "rest"
+        }
+      },
+      {
+        "name": "MBP",
+        "file": "speech-faces/MBP.svg",
+        "options": {
+          "mouth": "MBP"
+        }
+      },
+      {
+        "name": "small",
+        "file": "speech-faces/small.svg",
+        "options": {
+          "mouth": "small"
+        }
+      },
+      {
+        "name": "medium",
+        "file": "speech-faces/medium.svg",
+        "options": {
+          "mouth": "medium"
+        }
+      },
+      {
+        "name": "AA",
+        "file": "speech-faces/AA.svg",
+        "options": {
+          "mouth": "AA"
+        }
+      },
+      {
+        "name": "EE",
+        "file": "speech-faces/EE.svg",
+        "options": {
+          "mouth": "EE"
+        }
+      },
+      {
+        "name": "OH",
+        "file": "speech-faces/OH.svg",
+        "options": {
+          "mouth": "OH"
+        }
+      },
+      {
+        "name": "OO",
+        "file": "speech-faces/OO.svg",
+        "options": {
+          "mouth": "OO"
+        }
+      },
+      {
+        "name": "FV",
+        "file": "speech-faces/FV.svg",
+        "options": {
+          "mouth": "FV"
+        }
+      },
+      {
+        "name": "L",
+        "file": "speech-faces/L.svg",
+        "options": {
+          "mouth": "L"
+        }
+      },
+      {
+        "name": "TH",
+        "file": "speech-faces/TH.svg",
+        "options": {
+          "mouth": "TH"
+        }
+      },
+      {
+        "name": "CH",
+        "file": "speech-faces/CH.svg",
+        "options": {
+          "mouth": "CH"
+        }
+      },
+      {
+        "name": "smile",
+        "file": "speech-faces/smile.svg",
+        "options": {
+          "mouth": "smile"
+        }
+      },
+      {
+        "name": "teeth",
+        "file": "speech-faces/teeth.svg",
+        "options": {
+          "mouth": "teeth"
+        }
+      }
+    ],
+    "eyes": [
+      {
+        "name": "auto",
+        "file": "eyes/auto.svg",
+        "options": {
+          "eyes": "auto"
+        }
+      },
+      {
+        "name": "open",
+        "file": "eyes/open.svg",
+        "options": {
+          "eyes": "open"
+        }
+      },
+      {
+        "name": "half",
+        "file": "eyes/half.svg",
+        "options": {
+          "eyes": "half"
+        }
+      },
+      {
+        "name": "closed",
+        "file": "eyes/closed.svg",
+        "options": {
+          "eyes": "closed"
+        }
+      },
+      {
+        "name": "wide",
+        "file": "eyes/wide.svg",
+        "options": {
+          "eyes": "wide"
+        }
+      },
+      {
+        "name": "narrow",
+        "file": "eyes/narrow.svg",
+        "options": {
+          "eyes": "narrow"
+        }
+      },
+      {
+        "name": "happy",
+        "file": "eyes/happy.svg",
+        "options": {
+          "eyes": "happy"
+        }
+      },
+      {
+        "name": "wink-left",
+        "file": "eyes/wink-left.svg",
+        "options": {
+          "eyes": "wink-left"
+        }
+      },
+      {
+        "name": "wink-right",
+        "file": "eyes/wink-right.svg",
+        "options": {
+          "eyes": "wink-right"
+        }
+      }
+    ],
+    "eye-faces": [
+      {
+        "name": "auto",
+        "file": "eye-faces/auto.svg",
+        "options": {
+          "eyes": "auto"
+        }
+      },
+      {
+        "name": "open",
+        "file": "eye-faces/open.svg",
+        "options": {
+          "eyes": "open"
+        }
+      },
+      {
+        "name": "half",
+        "file": "eye-faces/half.svg",
+        "options": {
+          "eyes": "half"
+        }
+      },
+      {
+        "name": "closed",
+        "file": "eye-faces/closed.svg",
+        "options": {
+          "eyes": "closed"
+        }
+      },
+      {
+        "name": "wide",
+        "file": "eye-faces/wide.svg",
+        "options": {
+          "eyes": "wide"
+        }
+      },
+      {
+        "name": "narrow",
+        "file": "eye-faces/narrow.svg",
+        "options": {
+          "eyes": "narrow"
+        }
+      },
+      {
+        "name": "happy",
+        "file": "eye-faces/happy.svg",
+        "options": {
+          "eyes": "happy"
+        }
+      },
+      {
+        "name": "wink-left",
+        "file": "eye-faces/wink-left.svg",
+        "options": {
+          "eyes": "wink-left"
+        }
+      },
+      {
+        "name": "wink-right",
+        "file": "eye-faces/wink-right.svg",
+        "options": {
+          "eyes": "wink-right"
+        }
+      }
+    ],
+    "gaze": [
+      {
+        "name": "left",
+        "file": "gaze/left.svg",
+        "options": {
+          "gaze": [
+            -1,
+            0
+          ]
+        }
+      },
+      {
+        "name": "right",
+        "file": "gaze/right.svg",
+        "options": {
+          "gaze": [
+            1,
+            0
+          ]
+        }
+      },
+      {
+        "name": "up",
+        "file": "gaze/up.svg",
+        "options": {
+          "gaze": [
+            0,
+            -1
+          ]
+        }
+      },
+      {
+        "name": "down",
+        "file": "gaze/down.svg",
+        "options": {
+          "gaze": [
+            0,
+            1
+          ]
+        }
+      }
+    ]
+  }
+}

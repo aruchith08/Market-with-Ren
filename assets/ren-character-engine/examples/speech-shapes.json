@@ -1,0 +1,22 @@
+{
+  "version":1,"fps":30,"duration":7,"transition":0.25,
+  "character":{"emotion":"explaining","pose":"present","motion":0.35,"background":"#f3e8d6"},
+  "acting":[],
+  "speech":[
+    {"start":0,"end":0.5,"mouth":"rest"},
+    {"start":0.5,"end":1,"mouth":"MBP"},
+    {"start":1,"end":1.5,"mouth":"small"},
+    {"start":1.5,"end":2,"mouth":"medium"},
+    {"start":2,"end":2.5,"mouth":"AA"},
+    {"start":2.5,"end":3,"mouth":"EE"},
+    {"start":3,"end":3.5,"mouth":"OH"},
+    {"start":3.5,"end":4,"mouth":"OO"},
+    {"start":4,"end":4.5,"mouth":"FV"},
+    {"start":4.5,"end":5,"mouth":"L"},
+    {"start":5,"end":5.5,"mouth":"TH"},
+    {"start":5.5,"end":6,"mouth":"CH"},
+    {"start":6,"end":6.5,"mouth":"smile"},
+    {"start":6.5,"end":7,"mouth":"teeth"}
+  ],
+  "metadata":{"purpose":"Viseme catalogue, NOT synchronized speech."}
+}

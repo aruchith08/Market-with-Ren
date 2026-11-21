@@ -1,0 +1,93 @@
+PASS browser UMD has no module or package dependency
+PASS emotion neutral
+PASS emotion serious
+PASS emotion focused
+PASS emotion determined
+PASS emotion concerned
+PASS emotion sad
+PASS emotion surprised
+PASS emotion alert
+PASS emotion confident
+PASS emotion smiling
+PASS emotion happy
+PASS emotion explaining
+PASS emotion thinking
+PASS emotion skeptical
+PASS emotion curious
+PASS emotion relieved
+PASS emotion excited
+PASS emotion disappointed
+PASS emotion angry
+PASS emotion confused
+PASS mouth rest
+PASS mouth MBP
+PASS mouth small
+PASS mouth medium
+PASS mouth AA
+PASS mouth EE
+PASS mouth OH
+PASS mouth OO
+PASS mouth FV
+PASS mouth L
+PASS mouth TH
+PASS mouth CH
+PASS mouth smile
+PASS mouth teeth
+PASS eyes auto
+PASS eyes open
+PASS eyes half
+PASS eyes closed
+PASS eyes wide
+PASS eyes narrow
+PASS eyes happy
+PASS eyes wink-left
+PASS eyes wink-right
+PASS gesture idle
+PASS gesture present
+PASS gesture explain
+PASS gesture point
+PASS gesture point-up
+PASS gesture hand-on-chest
+PASS gesture emphasis
+PASS gesture wave
+PASS view front / left
+PASS view front / right
+PASS view three-quarter / left
+PASS view three-quarter / right
+PASS view side / left
+PASS view side / right
+PASS view three-quarter-back / left
+PASS view three-quarter-back / right
+PASS view back / left
+PASS view back / right
+PASS all 280 emotion-mouth combinations render
+PASS all 200 emotion-view-facing combinations render
+PASS same parameters return byte-identical SVG
+PASS frame order does not affect output
+PASS static mode is genuinely static
+PASS changing mouth does not change rig or eyes
+PASS source never loads images or consults wall clock
+PASS reject bad options {"emotion":"joyful"}
+PASS reject bad options {"mouth":"UNKNOWN"}
+PASS reject bad options {"pose":"run"}
+PASS reject bad options {"time":-1}
+PASS reject bad options {"time":null}
+PASS reject bad options {"width":0}
+PASS reject bad options {"blink":"yes"}
+PASS reject bad options {"gaze":[2,0]}
+PASS reject bad options {"gaze":[0]}
+PASS reject bad options {"id":"bad\"/><script>"}
+PASS reject bad options {"background":"url(evil)"}
+PASS reject bad options {"arbitrary":1}
+PASS example presentation.json
+PASS example quiet-briefing.json
+PASS example speech-shapes.json
+PASS empty speech track stays closed
+PASS speech gap closes mouth
+PASS overlapping speech is rejected
+PASS unknown cue fields are rejected
+PASS unsorted acting is rejected
+PASS emotion transitions interpolate numeric state
+PASS mutating exported palette or catalogue cannot alter geometry
+
+91 checks passed, including 480 combination renders.

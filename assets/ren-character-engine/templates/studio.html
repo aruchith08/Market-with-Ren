@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ren - Procedural Character Lab</title>
+<style>
+:root{--paper:#f3eadc;--ink:#30251e;--muted:#796858;--line:#d6c5ae;--red:#9a3424;--panel:#e8dcc9}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.5 system-ui,sans-serif}header{padding:25px 35px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:20px}.kicker{letter-spacing:2.5px;font:11px monospace;color:var(--red)}h1{font:38px Georgia,serif;margin:5px 0}header p{margin:0;color:var(--muted);max-width:650px}.chip{padding:7px 10px;background:#e7d4bb;font:11px monospace;border:1px solid var(--line)}main{display:grid;grid-template-columns:minmax(360px,1fr) 355px;max-width:1460px;margin:auto;gap:26px;padding:26px 35px}.stage-wrap{min-width:0}.stage{position:relative;background:#e8dcc9;border:1px solid var(--line);border-radius:6px;min-height:540px;aspect-ratio:1.2;overflow:hidden;display:grid;place-items:center}.stage.checker{background:repeating-conic-gradient(#eee8df 0 25%,#e0d7ca 0 50%) 0/28px 28px}.stage svg{height:100%;max-height:680px;width:100%;display:block}.stage-note{position:absolute;left:18px;top:14px;z-index:1;font:11px monospace;letter-spacing:1px;color:#7b6450}.stamp{position:absolute;right:16px;bottom:14px;border:1px solid #baa286;padding:5px 8px;color:#7a614d;font:10px monospace;background:#f3eadcd9}aside{border:1px solid var(--line);border-radius:6px;padding:19px 20px;background:#f7efe3}h2{font:21px Georgia,serif;margin:0 0 12px}.group{margin-bottom:15px}.row{display:flex;gap:10px}.row>*{flex:1;min-width:0}label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:4px}select,input[type=number],textarea{width:100%;border:1px solid #cdbb9f;background:#fffbf3;color:var(--ink);padding:8px;border-radius:3px;font:13px system-ui}textarea{height:145px;resize:vertical;font:11px/1.5 monospace}input[type=range]{width:100%;accent-color:var(--red)}button{cursor:pointer;background:var(--red);color:#fff3e0;border:1px solid var(--red);padding:9px 12px;border-radius:3px;font:12px system-ui;font-weight:650}button.secondary{background:transparent;color:var(--ink);border-color:#baa286}button:hover{filter:brightness(1.08)}.controls{display:flex;align-items:center;gap:12px;padding:16px 0}.controls input{flex:1}.time{font:12px monospace;min-width:64px}#status{font:11px/1.45 monospace;margin:10px 0;min-height:33px;color:#6d614f}.legend{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:12px}.stat{padding:12px 10px;border-top:2px solid #b3442e;background:#eadfcd}.stat b{font:22px Georgia,serif;display:block}.stat span{color:var(--muted);font-size:11px}.note{color:var(--muted);font-size:12px}.tick{display:flex;align-items:center;gap:6px;font-size:12px;margin:10px 0}.tick input{accent-color:var(--red)}footer{max-width:1460px;padding:10px 35px 28px;margin:auto;font-size:12px;color:var(--muted);border-top:1px solid var(--line)}code{font:11px monospace;background:#e9ddc9;padding:2px 4px}@media(max-width:850px){main{grid-template-columns:1fr;padding:20px}header{padding:20px;display:block}.chip{display:inline-block;margin-top:15px}.stage{min-height:400px}h1{font-size:32px}footer{padding:20px}}
+</style>
+</head>
+<body>
+<header><div><div class="kicker">ORIGAMI NEWS / CHARACTER SYSTEM V1</div><h1>Ren, drawn by code.</h1><p>One fixed character. Independent acting, gaze and speech controls. No raster character assets.</p></div><span class="chip">OFFLINE / NO REMOTION</span></header>
+<main>
+<div class="stage-wrap">
+<div class="stage" id="stageBox"><div class="stage-note">PROCEDURAL SVG / WAIST-UP</div><div id="stage" style="width:100%;height:100%;display:contents"></div><span class="stamp" id="stamp">LIVE RENDER</span></div>
+<div class="controls"><button id="play">Pause</button><input id="time" type="range" min="0" max="10" step="0.033333" value="0" aria-label="Timeline time"><span class="time" id="clock">0.00s</span><button class="secondary" id="demo">Acting demo</button></div>
+<div class="legend"><div class="stat"><b>20</b><span>Emotion presets</span></div><div class="stat"><b>14</b><span>Mouth shapes</span></div><div class="stat"><b>8</b><span>Anchor gestures</span></div><div class="stat"><b>0</b><span>Runtime packages</span></div></div>
+<p class="note">The acting demo is silent. Its mouth cues demonstrate shape changes, not alignment to recorded narration. Back and side views are resting turnaround poses.</p>
+</div>
+<aside><h2>Choose, don't redraw.</h2>
+<div class="row group"><div><label for="emotion">Emotion</label><select id="emotion"></select></div><div><label for="pose">Gesture</label><select id="pose"></select></div></div>
+<div class="row group"><div><label for="mouth">Mouth</label><select id="mouth"></select></div><div><label for="eyes">Eyes</label><select id="eyes"></select></div></div>
+<div class="row group"><div><label for="view">View</label><select id="view"></select></div><div><label for="facing">Facing</label><select id="facing"><option>left</option><option>right</option></select></div></div>
+<div class="row group"><div><label for="gaze">Gaze</label><select id="gaze"><option value="0,0">Camera</option><option value="-1,0">Screen-left</option><option value="1,0">Screen-right</option><option value="0,-1">Up</option><option value="0,1">Down</option></select></div><div><label for="detail">Detail</label><select id="detail"><option value="full">Paper texture</option><option value="draft">Fast draft</option></select></div></div>
+<label for="motion">Idle motion</label><input id="motion" type="range" min="0" max="1.5" step=".05" value=".7">
+<div class="row"><div class="tick"><input type="checkbox" id="blink" checked><span>Automatic blink</span></div><div class="tick"><input type="checkbox" id="alpha"><span>Transparency</span></div></div>
+<div class="row group"><button id="svgExport">Export SVG</button><button class="secondary" id="jsonExport">Export JSON</button></div>
+<label for="json">Scene JSON</label><textarea id="json" spellcheck="false" aria-label="Editable scene JSON"></textarea>
+<div class="row" style="margin-top:8px"><button class="secondary" id="apply">Validate and apply</button><button class="secondary" id="reset">Reset</button></div><div id="status" role="status">Ready. The same options and time reproduce the same SVG.</div>
+</aside>
+</main>
+<footer>The JavaScript renderer, not these previews, is the reusable asset. For an agent, start with <code>docs/AGENT_QUICKSTART.md</code>. This is a character engine, not the finished daily-news skill.</footer>
+<script>/*__REN_ENGINE__*/</script>
+<script>
+'use strict';
+const EXAMPLE=/*__REN_EXAMPLE__*/;
+const $=id=>document.getElementById(id);
+let time=0,playing=true,demoMode=false,scene=null,lastTick=0,svg='';
+for(const [id,values] of Object.entries({emotion:Ren.CATALOG.emotions,pose:Ren.CATALOG.poses,mouth:['auto',...Ren.CATALOG.mouths],eyes:Ren.CATALOG.eyes,view:Ren.CATALOG.views})){
+ for(const name of values){const opt=document.createElement('option');opt.value=name;opt.textContent=name;$(id).appendChild(opt);}
+}
+$('pose').value='present';$('emotion').value='explaining';
+function options(){return {emotion:$('emotion').value,pose:$('pose').value,mouth:$('mouth').value,eyes:$('eyes').value,view:$('view').value,facing:$('facing').value,gaze:$('gaze').value.split(',').map(Number),detail:$('detail').value,motion:Number($('motion').value),blink:$('blink').checked,seed:7,background:'transparent'};}
+function makeScene(){return {version:1,fps:30,duration:10,character:options(),acting:[]};}
+function render(){
+ try{
+  const active=demoMode?(scene||EXAMPLE):makeScene();const end=active.duration;
+  time=Math.min(Math.max(0,time),end-.00001);
+  if(demoMode){const copy={...active,character:{...active.character,background:'transparent'}};svg=Ren.renderAt(copy,time);}else svg=Ren.render({...options(),time});
+  $('stage').innerHTML=svg;
+  $('stageBox').classList.toggle('checker',$('alpha').checked);
+  $('time').max=end;$('time').value=time;$('clock').textContent=time.toFixed(2)+'s';
+  $('stamp').textContent=demoMode?'TIMELINE / '+Math.floor(time*active.fps):$('emotion').value.toUpperCase()+' / '+$('mouth').value.toUpperCase();
+ }catch(e){$('status').textContent=e.message;playing=false;}
+}
+function updateJSON(){ $('json').value=JSON.stringify(demoMode?(scene||EXAMPLE):makeScene(),null,2); }
+function status(text){$('status').textContent=text;}
+for(const id of ['emotion','pose','mouth','eyes','view','facing','gaze','detail','motion','blink','alpha'])$(id).addEventListener('input',()=>{demoMode=false;scene=null;updateJSON();render();status('Preset selected. No drawing code was changed.');});
+$('time').addEventListener('input',()=>{time=Number($('time').value);playing=false;$('play').textContent='Play';render();});
+$('play').onclick=()=>{playing=!playing;$('play').textContent=playing?'Pause':'Play';};
+$('demo').onclick=()=>{scene=JSON.parse(JSON.stringify(EXAMPLE));demoMode=true;time=0;playing=true;$('play').textContent='Pause';updateJSON();render();status('Silent demonstration. Mouth cues are illustrative, not audio-aligned.');};
+function download(name,text,type){const u=URL.createObjectURL(new Blob([text],{type})),a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),2000);}
+$('svgExport').onclick=()=>download('ren-frame.svg',svg,'image/svg+xml');
+$('jsonExport').onclick=()=>download('ren-scene.json',JSON.stringify(demoMode?(scene||EXAMPLE):makeScene(),null,2),'application/json');
+$('apply').onclick=()=>{try{const s=JSON.parse($('json').value);Ren.validateScene(s);scene=s;demoMode=true;time=0;playing=false;$('play').textContent='Play';render();status('Valid scene. '+s.duration+' seconds at '+s.fps+' fps.');}catch(e){status(e.message);}};
+$('reset').onclick=()=>{demoMode=false;scene=null;time=0;playing=false;$('play').textContent='Play';$('emotion').value='neutral';$('pose').value='idle';$('mouth').value='auto';$('eyes').value='auto';$('view').value='front';$('gaze').value='0,0';updateJSON();render();};
+window.setReviewTime=t=>{playing=false;time=t;render();};
+updateJSON();render();
+function tick(now){if(playing&&now-lastTick>=1000/30){time+=(now-lastTick>200?1/30:(now-lastTick)/1000);const dur=demoMode?(scene||EXAMPLE).duration:10;if(time>=dur)time=0;render();lastTick=now;}if(!playing)lastTick=now;requestAnimationFrame(tick);}requestAnimationFrame(tick);
+</script>
+</body></html>
