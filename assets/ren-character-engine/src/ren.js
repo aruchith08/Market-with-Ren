@@ -160,101 +160,29 @@
     const dx=b[0]-a[0],dy=b[1]-a[1],len=Math.hypot(dx,dy)||1,nx=-dy/len,ny=dx/len;
     return ctx.panel([[a[0]+nx*wa/2,a[1]+ny*wa/2],[b[0]+nx*wb/2,b[1]+ny*wb/2],[b[0]-nx*wb/2,b[1]-ny*wb/2],[a[0]-nx*wa/2,a[1]-ny*wa/2]],color,{contrast:.16});
   }
-
-  // Faceted, tapered fingers keep an anatomical silhouette without curved paths.
-  // Each digit has a knuckle bend, a beveled fingertip, and one subtle fold line.
-  function finger(ctx,base,joint,tip,baseWidth,tipWidth,color=C.skinLight) {
-    const P=ctx.panel,L=ctx.line;
-    const dx=tip[0]-base[0],dy=tip[1]-base[1],length=Math.hypot(dx,dy)||1;
-    const ux=dx/length,uy=dy/length,nx=-uy,ny=ux;
-    const edge=(p,offset)=>[p[0]+nx*offset,p[1]+ny*offset];
-    const cap=[tip[0]-ux*5,tip[1]-uy*5];
-    let s='<g data-ren-digit="true">';
-    s+=P([
-      edge(base,-baseWidth/2),edge(joint,-baseWidth*.43),
-      edge(cap,-tipWidth/2),edge(tip,-tipWidth*.18),
-      edge(tip,tipWidth*.18),edge(cap,tipWidth/2),
-      edge(joint,baseWidth*.43),edge(base,baseWidth/2)
-    ],color,{contrast:.09});
-    s+=P([edge(base,-baseWidth*.48),edge(joint,-baseWidth*.40),joint,base],
-      tint(color,-.075),{shadow:false,contrast:.045});
-    s+=L([edge(joint,-baseWidth*.32),edge(joint,baseWidth*.32)],C.skinDark,1,.45);
-    return s+'</g>';
-  }
   function hand(ctx,type) {
     const P=ctx.panel,L=ctx.line;let s='';
     if(type==='palm'){
-      // Spread fingers: middle longest, little finger shortest, each slightly splayed.
-      for(const a of [
-        [[-26,-74],[-31,-105],[-37,-135],16,9],
-        [[-9,-79],[-11,-116],[-14,-148],17,10],
-        [[10,-77],[13,-110],[16,-140],16,9],
-        [[28,-66],[35,-94],[40,-118],13,8]
-      ])s+=finger(ctx,...a);
-      s+=P([[-23,8],[-34,-18],[-40,-46],[-30,-77],[-12,-83],
-        [14,-79],[34,-66],[39,-39],[24,7]],C.skin,{center:[0,-36],contrast:.10});
-      s+=P([[-32,-48],[-10,-72],[11,-44],[-12,-17]],C.skinLight,
-        {shadow:false,contrast:.065});
-      s+=P([[12,-70],[34,-55],[25,-7],[6,-29]],tint(C.skin,-.065),
-        {shadow:false,contrast:.05});
-      // Thumb has a separate joint and a beveled tip rather than a single triangle.
-      s+=P([[-29,-26],[-46,-40],[-60,-56],[-69,-75],[-64,-84],
-        [-55,-82],[-37,-61],[-17,-54],[-7,-36],[-20,-20]],C.skinLight,
-        {contrast:.07});
-      s+=P([[-46,-40],[-60,-56],[-69,-75],[-55,-63]],tint(C.skin,-.055),
-        {shadow:false,contrast:.05});
-      s+=L([[-47,-51],[-57,-65]],C.skinDark,1.1,.48);
-      s+=L([[-20,-43],[-3,-36],[16,-41]],C.skinDark,1.2,.43);
-      s+=L([[-21,-61],[-8,-64],[6,-61]],C.skinDark,.9,.36);
+      s+=P([[-25,4],[-39,-42],[-25,-82],[23,-85],[39,-42],[26,2]],C.skin,{center:[1,-35],contrast:.10});
+      const fingers=[[-25,-66,-33,-130,16],[-7,-75,-8,-143,17],[12,-74,18,-135,16],[29,-65,40,-113,14]];
+      fingers.forEach(([x,y,xx,yy,w])=>{s+=segment(ctx,[x,y],[xx,yy],w,w*.65,C.skinLight);s+=L([[xx-w*.25,yy+26],[xx+w*.27,yy+24]],C.skinDark,.9,.8);});
+      s+=P([[-29,-31],[-63,-58],[-70,-83],[-59,-87],[-35,-61],[-13,-53]],C.skinLight,{contrast:.09});
+      s+=L([[-19,-57],[6,-49],[23,-61]],C.skinDark,1.1,.55);
     }else if(type==='point'){
-      // The index finger extends while the remaining three fingers fold inward.
-      s+=finger(ctx,[-22,-70],[-21,-110],[-18,-152],17,10);
-      s+=P([[-27,5],[-36,-35],[-28,-68],[-7,-81],
-        [22,-65],[35,-40],[26,4]],C.skin,{center:[0,-33],contrast:.10});
-      for(const [x,y,w] of [[-4,-66,15],[11,-62,14],[24,-55,12]]){
-        s+=P([[x-4,y-2],[x+w-5,y-7],[x+w,y+12],[x+3,y+18]],
-          C.skinLight,{shadow:false,contrast:.06});
-        s+=L([[x+2,y+10],[x+w-3,y+8]],C.skinDark,.9,.43);
-      }
-      s+=P([[-29,-25],[-41,-42],[-34,-60],[-24,-64],
-        [4,-49],[11,-34],[-8,-20]],C.skinLight,{contrast:.08});
-      s+=L([[-28,-52],[-15,-48]],C.skinDark,1,.38);
+      s+=P([[-27,0],[-35,-50],[-15,-76],[22,-66],[34,-32],[24,2]],C.skin,{center:[0,-35]});
+      s+=P([[-20,-54],[-20,-141],[-10,-155],[1,-144],[2,-56]],C.skinLight,{contrast:.08});
+      for(let i=0;i<3;i++)s+=P([[-5+i*12,-65+i*4],[9+i*12,-65+i*4],[14+i*11,-38+i*4],[1+i*12,-32+i*4]],tint(C.skin,-i*.03),{shadow:false});
+      s+=P([[-30,-33],[-37,-62],[-27,-71],[5,-48],[10,-32],[-9,-24]],C.skinLight,{contrast:.08});
     }else if(type==='fist'){
-      // Four uneven knuckles and the crossing thumb read as a closed hand.
-      s+=P([[-25,6],[-37,-34],[-31,-66],[-22,-79],
-        [15,-82],[33,-66],[39,-38],[27,4]],C.skin,{center:[0,-36],contrast:.1});
-      for(let i=0;i<4;i++){
-        const x=-30+i*15, lift=[0,-6,-4,4][i];
-        s+=P([[x,-61+lift],[x+4,-79+lift],[x+15,-80+lift],
-          [x+18,-61+lift],[x+10,-52+lift]],tint(C.skinLight,-i*.022),
-          {shadow:false,contrast:.055});
-        s+=L([[x+3,-59+lift],[x+15,-58+lift]],C.skinDark,.9,.42);
-      }
-      s+=P([[-29,-32],[-20,-52],[-7,-51],[21,-33],
-        [17,-17],[2,-14],[-11,-24]],C.skinLight,{contrast:.07});
-      s+=L([[-18,-44],[-4,-39],[9,-30]],C.skinDark,1,.48);
-      s+=P([[18,-31],[34,-39],[29,-12],[14,-8]],tint(C.skin,-.08),
-        {shadow:false,contrast:.04});
+      s+=P([[-26,3],[-38,-47],[-28,-77],[19,-83],[39,-50],[29,0]],C.skin,{center:[0,-40]});
+      for(let i=0;i<4;i++)s+=P([[-29+i*15,-63],[-25+i*15,-83],[i*15-11,-80],[i*15-13,-54]],C.skinLight,{shadow:false,contrast:.08});
+      s+=P([[-32,-41],[-13,-55],[17,-30],[13,-13],[-2,-16]],C.skin,{contrast:.06});
     }else{
-      // Relaxed hands hang with separate, gently curved fingers rather than a mitten.
-      for(const a of [
-        [[-22,29],[-25,49],[-27,70],13,8],
-        [[-8,36],[-10,57],[-10,76],14,9],
-        [[8,35],[11,55],[13,73],13,8],
-        [[24,27],[30,43],[34,59],11,7]
-      ])s+=finger(ctx,...a);
-      s+=P([[-21,-11],[-29,11],[-28,37],[-13,48],
-        [13,46],[29,28],[24,-12]],C.skin,{center:[0,17],contrast:.095});
-      s+=P([[-22,5],[-14,32],[2,42],[-6,9]],C.skinLight,
-        {shadow:false,contrast:.055});
-      s+=P([[10,37],[27,25],[24,-9],[5,-5]],tint(C.skin,-.06),
-        {shadow:false,contrast:.05});
-      s+=P([[-24,7],[-37,25],[-39,40],[-32,45],
-        [-20,32],[-9,13]],C.skinLight,{contrast:.07});
-      s+=L([[-28,27],[-32,35]],C.skinDark,.9,.45);
-      s+=L([[-12,22],[0,26],[13,20]],C.skinDark,1,.32);
+      s+=P([[-24,-2],[-27,27],[-9,65],[13,68],[30,47],[25,-3]],C.skin,{center:[1,27]});
+      s+=P([[-23,8],[-39,34],[-33,48],[-17,34],[-7,12]],C.skinLight,{contrast:.05});
+      for(let i=0;i<3;i++)s+=L([[-11+i*12,22],[-4+i*11,56]],C.skinDark,1.2,.65);
     }
-    return '<g data-ren-hand="'+type+'">'+s+'</g>';
+    return s;
   }
   function arms(ctx,pose,fore=false,m=0,t=0) {
     let s='';for(const [side,sgn,sx] of [['L',-1,315],['R',1,685]]){
