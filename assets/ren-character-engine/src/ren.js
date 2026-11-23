@@ -198,10 +198,18 @@
     s+=ctx.poly([add(cuff,nc,35),add(wrist,nc,34.5),add(wrist,nc,-34.5),add(cuff,nc,-35)],C.suitLight,.78);
     return s+'</g>';
   }
+  // Extend only the arm bones; sleeve widths, fold art, poses and hand sprites stay unchanged.
+  const ARM_LENGTH = Object.freeze({upper:1.15,forearm:1.15});
+  function lengthenArm(shoulder,elbow,wrist) {
+    const e=shoulder.map((v,i)=>v+(elbow[i]-v)*ARM_LENGTH.upper);
+    const w=e.map((v,i)=>v+(wrist[i]-elbow[i])*ARM_LENGTH.forearm);
+    return [e,w];
+  }
   function arms(ctx,pose,fore=false,m=0,t=0) {
     let s='';for(const [side,sgn,sx] of [['L',-1,315],['R',1,685]]){
       const a=pose[side],drift=m*Math.sin(t*1.7+(side==='L'?0:1.2))*1.6;
-      const e=[a[0],a[1]+drift],w=[a[2],a[3]+drift];
+      const [elbow,wrist]=lengthenArm([sx,639],[a[0],a[1]],[a[2],a[3]]);
+      const e=[elbow[0],elbow[1]+drift],w=[wrist[0],wrist[1]+drift];
       if(!fore){s+=connectedSleeve(ctx,[sx,639],e,w,side);continue;}
       s+=`<g id="${ctx.id}-arm-${side}">`;
       // Existing upper and lower arm pieces replaced by the connected sleeve.
@@ -433,10 +441,13 @@
     s+=P([[385,567],[444,621],[469,798],[526,1009],[305,1010],[328,808]],C.red,{center:[405,805],contrast:.12});
     s+=P([[381,534],[480,553],[583,620],[549,674],[421,633],[359,593]],C.red,{center:[458,598],contrast:.14});
     s+=P([[381,534],[480,553],[583,620],[444,601]],C.redLight,{center:[458,577],contrast:.10});
-    s+=segment(ctx,[523,654],[529,822],106,83,C.suit);
-    s+=segment(ctx,[529,822],[545,956],88,66,C.suit);
-    s+=segment(ctx,[542,925],[545,956],73,69,C.suitLight);
-    s+='<g transform="translate(545 956)">'+hand(ctx,'relax')+'</g>';
+    const [sideElbow,sideWrist]=lengthenArm([523,654],[529,822],[545,956]);
+    const forearmLength=Math.hypot(sideWrist[0]-sideElbow[0],sideWrist[1]-sideElbow[1]);
+    const sideCuff=sideWrist.map((v,i)=>v-(sideWrist[i]-sideElbow[i])*31/forearmLength);
+    s+=segment(ctx,[523,654],sideElbow,106,83,C.suit);
+    s+=segment(ctx,sideElbow,sideWrist,88,66,C.suit);
+    s+=segment(ctx,sideCuff,sideWrist,73,69,C.suitLight);
+    s+='<g transform="translate('+f(sideWrist[0])+' '+f(sideWrist[1])+')">'+hand(ctx,'relax')+'</g>';
     s+=P([[421,633],[549,674],[501,719],[367,706]],C.red,{center:[454,675],contrast:.11});
     return s+'</g>';
   }
